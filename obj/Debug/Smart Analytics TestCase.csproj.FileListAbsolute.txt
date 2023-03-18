@@ -79,3 +79,4 @@ C:\Users\yunas\source\repos\Smart Analytics TestCase\obj\Debug\Smart Analytics T
 C:\Users\yunas\source\repos\Smart Analytics TestCase\obj\Debug\Smart_Analytics_TestCase.FormRenameTable.resources
 C:\Users\yunas\source\repos\Smart Analytics TestCase\obj\Debug\Smart_Analytics_TestCase.Fields.resources
 C:\Users\yunas\source\repos\Smart Analytics TestCase\obj\Debug\Smart_Analytics_TestCase.FormCreateTable.resources
+C:\Users\yunas\source\repos\Smart Analytics TestCase\obj\Debug\Smart_Analytics_TestCase.FormAddRow.resources
