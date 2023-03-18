@@ -35,7 +35,10 @@ namespace Smart_Analytics_TestCase
                         rows.Add(obj);
                     }
                 }
-
+                catch (Exception ex)
+                {
+                    return null;
+                }
                 finally
                 {
                     connection.Close();

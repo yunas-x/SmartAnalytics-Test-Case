@@ -69,12 +69,9 @@ namespace Smart_Analytics_TestCase
         /// Initializes table from DataBase (if not already loaded)
         /// </summary>
         /// <param name="name">table name</param>
-        public void Init(string name, bool checkIfEmpty = true)
+        public void Init(string name)
         {
-            if (checkIfEmpty && rows[0] != null)
-            {
-                return;
-            }
+            rows = new RowModel[NUM_ROWS];
 
             var sql = $@"SELECT COLUMN_NAME, DATA_TYPE
                         FROM INFORMATION_SCHEMA.COLUMNS

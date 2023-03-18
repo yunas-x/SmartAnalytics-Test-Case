@@ -92,7 +92,8 @@ namespace Smart_Analytics_TestCase
 
             var model = tableModels[tableName];
 
-            model.Init(tableName, checkIfEmpty);
+            if (!checkIfEmpty || model.Rows[0] == null)
+                model.Init(tableName);
 
             tableNameLabel.Text = tableName;
 
@@ -127,13 +128,26 @@ namespace Smart_Analytics_TestCase
             var newTable = new TableModel();
             new FormCreateTable(newTable).ShowDialog();
 
+            var doYouWantToUpdateDialog = MessageBox
+                .Show("Wanna update?", "Save Change", MessageBoxButtons.YesNo);
+
+            if (doYouWantToUpdateDialog == DialogResult.No)
+            {
+                return;
+            }
             try
             {
-                DBWorker.DoQuery(newTable.CreateScriptBuilder());
+                var res = DBWorker.DoQuery(newTable.CreateScriptBuilder());
+
+                if (res == null)
+                {
+                    MessageBox.Show("Error. improper content");
+                }
+
                 treeViewTableNames.Nodes.Add(newTable.CurrentTableName);
                 tableModels.Add(newTable.CurrentTableName, newTable);
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -148,7 +162,10 @@ namespace Smart_Analytics_TestCase
             String query = $@"DROP TABLE {tableModels[tableNameLabel.Text]}";
             try
             {
-                DBWorker.DoQuery(query);
+                var res = DBWorker.DoQuery(query);
+
+                if (res == null) return;
+
                 tableModels.Remove(tableNameLabel.Text);
                 treeViewTableNames.SelectedNode.Remove();
             }
@@ -193,11 +210,100 @@ namespace Smart_Analytics_TestCase
             treeViewTableNames.SelectedNode.Text = tableNameLabel.Text;
 
             var newModel = tableModels[oldName];
+
+            if (newModel.CurrentTableName == tableNameLabel.Text)
+                return;
+
+            var doYouWantToUpdateDialog = MessageBox
+                            .Show("Wanna update?", "Save Change", MessageBoxButtons.YesNo);
+
+            if (doYouWantToUpdateDialog == DialogResult.No)
+            {
+                return;
+            }
+
             newModel.CurrentTableName = tableNameLabel.Text;
 
             tableModels.Add(tableNameLabel.Text, newModel);
 
             tableModels.Remove(oldName);
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            if (allFields.Where(p => p.Value.Visible).Count() < TableModel.NUM_ROWS)
+            {
+                RowModel row = new RowModel();
+                new FormAddRow(row).ShowDialog();
+
+                var doYouWantToUpdateDialog = MessageBox
+                            .Show("Wanna update?", "Save Change", MessageBoxButtons.YesNo);
+
+                if (doYouWantToUpdateDialog == DialogResult.No)
+                {
+                    return;
+                }
+                try
+                {
+
+                    String query = $"ALTER TABLE {tableNameLabel.Text} ADD {row.Name} {row.Type}";
+
+                    if (row.IsKey)
+                        query += " Primary Key";
+
+                    query += ';';
+
+                    var res = DBWorker.DoQuery(query);
+
+                    if (res == null) return;
+
+                    tableModels[tableNameLabel.Text].AddRow(row);
+
+                    FillRows(tableNameLabel.Text);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("To many fields");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Label l = new Label();
+            new FormRenameTable(l).ShowDialog();
+
+            var doYouWantToUpdateDialog = MessageBox
+                    .Show("Wanna update?", "Save Change", MessageBoxButtons.YesNo);
+
+            if (doYouWantToUpdateDialog == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+
+                String query = $"ALTER TABLE {tableNameLabel.Text} DROP COLUMN {l.Text}";
+
+
+                var res = DBWorker.DoQuery(query);
+                if (res == null)
+                {
+                    MessageBox.Show("Error. improper content");
+                }
+
+                FillRows(tableNameLabel.Text, false);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

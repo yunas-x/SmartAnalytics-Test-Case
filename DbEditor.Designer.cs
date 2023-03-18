@@ -33,6 +33,8 @@ namespace Smart_Analytics_TestCase
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeViewTableNames = new System.Windows.Forms.TreeView();
             this.Tables = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRename = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,6 +42,7 @@ namespace Smart_Analytics_TestCase
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableNameLabel = new System.Windows.Forms.Label();
+            this.buttonCreate = new System.Windows.Forms.Button();
             this.fields2 = new Smart_Analytics_TestCase.Fields();
             this.fields1 = new Smart_Analytics_TestCase.Fields();
             this.fields4 = new Smart_Analytics_TestCase.Fields();
@@ -54,7 +57,6 @@ namespace Smart_Analytics_TestCase
             this.fields16 = new Smart_Analytics_TestCase.Fields();
             this.fields11 = new Smart_Analytics_TestCase.Fields();
             this.fields14 = new Smart_Analytics_TestCase.Fields();
-            this.buttonCreate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +78,8 @@ namespace Smart_Analytics_TestCase
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.splitContainer1.Panel2.Controls.Add(this.button2);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonAdd);
             this.splitContainer1.Panel2.Controls.Add(this.buttonRename);
             this.splitContainer1.Panel2.Controls.Add(this.buttonDelete);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
@@ -123,10 +127,32 @@ namespace Smart_Analytics_TestCase
             this.Tables.TabIndex = 0;
             this.Tables.Text = "Tables";
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(3, 342);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(573, 35);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Delete column";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAdd.Location = new System.Drawing.Point(292, 419);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(284, 34);
+            this.buttonAdd.TabIndex = 27;
+            this.buttonAdd.Text = "Add column...";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
             // buttonRename
             // 
             this.buttonRename.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRename.Location = new System.Drawing.Point(0, 371);
+            this.buttonRename.Location = new System.Drawing.Point(0, 383);
             this.buttonRename.Name = "buttonRename";
             this.buttonRename.Size = new System.Drawing.Size(284, 30);
             this.buttonRename.TabIndex = 26;
@@ -137,9 +163,9 @@ namespace Smart_Analytics_TestCase
             // buttonDelete
             // 
             this.buttonDelete.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDelete.Location = new System.Drawing.Point(290, 371);
+            this.buttonDelete.Location = new System.Drawing.Point(292, 383);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(286, 30);
+            this.buttonDelete.Size = new System.Drawing.Size(284, 30);
             this.buttonDelete.TabIndex = 25;
             this.buttonDelete.Text = "Delete this table";
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -189,6 +215,17 @@ namespace Smart_Analytics_TestCase
             this.tableNameLabel.Name = "tableNameLabel";
             this.tableNameLabel.Size = new System.Drawing.Size(0, 38);
             this.tableNameLabel.TabIndex = 20;
+            // 
+            // buttonCreate
+            // 
+            this.buttonCreate.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCreate.Location = new System.Drawing.Point(0, 419);
+            this.buttonCreate.Name = "buttonCreate";
+            this.buttonCreate.Size = new System.Drawing.Size(284, 34);
+            this.buttonCreate.TabIndex = 0;
+            this.buttonCreate.Text = "Create new table...";
+            this.buttonCreate.UseVisualStyleBackColor = true;
+            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
             // fields2
             // 
@@ -302,18 +339,6 @@ namespace Smart_Analytics_TestCase
             this.fields14.Size = new System.Drawing.Size(274, 28);
             this.fields14.TabIndex = 5;
             // 
-            // buttonCreate
-            // 
-            this.buttonCreate.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonCreate.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCreate.Location = new System.Drawing.Point(0, 407);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(579, 46);
-            this.buttonCreate.TabIndex = 0;
-            this.buttonCreate.Text = "Create new table...";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
-            // 
             // DbEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -364,6 +389,8 @@ namespace Smart_Analytics_TestCase
         private Dictionary<int, Fields> allFields;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonRename;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -18,6 +18,7 @@ namespace Smart_Analytics_TestCase
         }
 
         private RowModel row;
+
         public RowModel Row
         {
             set

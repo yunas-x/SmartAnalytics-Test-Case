@@ -188,6 +188,12 @@
     <Compile Include="DbEditor.Designer.cs">
       <DependentUpon>DbEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddRow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddRow.Designer.cs">
+      <DependentUpon>FormAddRow.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCreateTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     <Compile Include="TableModel.cs" />
     <EmbeddedResource Include="DbEditor.resx">
       <DependentUpon>DbEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddRow.resx">
+      <DependentUpon>FormAddRow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateTable.resx">
       <DependentUpon>FormCreateTable.cs</DependentUpon>
